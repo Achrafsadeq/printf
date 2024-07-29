@@ -18,7 +18,7 @@ This project involves creating a custom printf function in C. It includes tasks 
 
 ## Tasks
 | Task | Description |
-|------|-------------|------|
+|------|-------------|
 | 0 | Write a function that produces output according to a format. Handle conversion specifiers c and s and %. |
 | 1 | Handle conversion specifiers d and i. |
 | 2 | Handle custom conversion specifier b. |
@@ -54,3 +54,4 @@ Codenames: `Achraf Sadeq & Elhoucine Smaili`
 ## Acknowledgments
 This project is part of the ALX Software Engineering Program curriculum.
 
+--------------
