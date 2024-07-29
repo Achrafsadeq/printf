@@ -1,70 +1,49 @@
 #include "main.h"
 
 /**
- * _print_string - writes a string to stdout
- * @str: The string to print
+ * _printf - Produces output according to a format
+ * @format: A character string containing the format directives
  *
- * Return: Number of characters printed
- */
-int _print_string(char *str)
-{
-	int count = 0;
-
-	if (str == NULL)
-		str = "(null)";
-
-	while (*str)
-	{
-		_putchar(*str++);
-		count++;
-	}
-
-	return (count);
-}
-
-/**
- * _printf - produces output according to a format
- * @format: The format string
- *
- * Return: Number of characters printed
+ * Return: The number of characters printed
  */
 int _printf(const char *format, ...)
 {
+	int index = 0, count = 0;
 	va_list args;
-	int count = 0;
-	const char *p;
 
-	if (format == NULL)
+	if (!format)
 		return (-1);
 
 	va_start(args, format);
 
-	for (p = format; *p != '\0'; p++)
+	while (format[index])
 	{
-		if (*p == '%')
+		if (format[index] == '%')
 		{
-			p++;
-			switch (*p)
+			index++;
+			switch (format[index])
 			{
 				case 'c':
-					count += _putchar(va_arg(args, int));
+					count += handle_print_c(args);
 					break;
 				case 's':
-					count += _print_string(va_arg(args, char *));
+					count += handle_print_s(args);
 					break;
 				case '%':
-					count += _putchar('%');
+					count += handle_print_percent(args);
 					break;
 				default:
-					count += _putchar('%');
-					count += _putchar(*p);
-					break;
+					write(1, &format[index - 1], 1);
+					write(1, &format[index], 1);
+					count += 2;
 			}
 		}
 		else
 		{
-			count += _putchar(*p);
+			write(1, &format[index], 1);
+			count++;
 		}
+		index++;
 	}
 
 	va_end(args);

@@ -5,8 +5,10 @@
 #include <unistd.h>
 #include <stdlib.h>
 
+/* Function prototypes */
 int _printf(const char *format, ...);
-int _putchar(char c);
-int _print_string(char *str);
-void handle_format(const char **p, va_list args, int *count);
+int handle_print_c(va_list args);
+int handle_print_s(va_list args);
+int handle_print_percent(va_list args);
+
 #endif /* MAIN_H */
