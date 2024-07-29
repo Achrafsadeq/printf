@@ -1,5 +1,4 @@
 #include "main.h"
-#include <stdarg.h>
 
 /**
  * _print_string - writes a string to stdout
@@ -24,33 +23,6 @@ int _print_string(char *str)
 }
 
 /**
- * handle_format - handles the format specifiers
- * @p: pointer to the format string
- * @args: va_list of arguments
- * @count: pointer to the count of characters printed
- */
-void handle_format(const char **p, va_list args, int *count)
-{
-	(*p)++;
-	switch (**p)
-	{
-		case 'c':
-			*count += _putchar(va_arg(args, int));
-			break;
-		case 's':
-			*count += _print_string(va_arg(args, char *));
-			break;
-		case '%':
-			*count += _putchar('%');
-			break;
-		default:
-			*count += _putchar('%');
-			*count += _putchar(**p);
-			break;
-	}
-}
-
-/**
  * _printf - produces output according to a format
  * @format: The format string
  *
@@ -67,12 +39,27 @@ int _printf(const char *format, ...)
 
 	va_start(args, format);
 
-	/* Iterate through the format string */
 	for (p = format; *p != '\0'; p++)
 	{
 		if (*p == '%')
 		{
-			handle_format(&p, args, &count);
+			p++;
+			switch (*p)
+			{
+				case 'c':
+					count += _putchar(va_arg(args, int));
+					break;
+				case 's':
+					count += _print_string(va_arg(args, char *));
+					break;
+				case '%':
+					count += _putchar('%');
+					break;
+				default:
+					count += _putchar('%');
+					count += _putchar(*p);
+					break;
+			}
 		}
 		else
 		{
