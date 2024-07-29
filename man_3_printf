@@ -1,0 +1,67 @@
+.TH "_printf" 3 "29 July 2024" "1.0" "_printf() man page"
+.SH NAME
+_printf \- formatted output
+.SH SYNOPSIS
+.B _printf
+.IR format " [arguments, ...]"
+.SH DESCRIPTION
+The
+.B _printf
+utility formats and prints its arguments to the standard output, using the provided
+.I format
+string.
+
+The format string is a character string, which includes format specifiers and ordinary characters. Ordinary characters are copied directly to the output, while format specifiers are replaced by the values of corresponding arguments.
+
+Supported format specifiers:
+.TP
+.B %c
+Prints a single character. The corresponding argument must be an
+.IR int ,
+which is converted to an unsigned char before printing.
+
+.TP
+.B %s
+Prints a string. The corresponding argument must be a pointer to a null-terminated string. If the pointer is
+.I NULL ,
+the string "(null)" is printed.
+
+.TP
+.B %%
+Prints a literal '%' character. No argument is required for this specifier.
+
+The _printf utility does not support the following features of the C library
+.B printf
+function:
+.TP
+- Buffer handling
+.TP
+- Flag characters (e.g., '-', '+', ' ', '#', '0')
+.TP
+- Field width specifiers
+.TP
+- Precision specifiers
+.TP
+- Length modifiers (e.g., 'l', 'h')
+
+.SH RETURN VALUE
+The
+.B _printf
+utility returns the number of characters printed (excluding the null byte used to end output to strings). If an error occurs, it returns -1.
+
+.SH SEE ALSO
+.BR builtin (1),
+.BR echo (1),
+.BR sh (1),
+.BR printf (3)
+
+.SH BUGS
+No known bugs. The function does not fully implement the functionality of the standard C library
+.B printf
+function, particularly with respect to more advanced formatting options.
+
+.SH IMPROVEMENTS
+Future improvements could include the implementation of width, precision, length specifiers for integers, and the addition of flag characters such as '-' and '0'.
+
+.SH AUTHOR
+Achraf Sadeq & Elhoucine Smaili
