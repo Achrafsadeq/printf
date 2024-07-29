@@ -17,7 +17,7 @@ This project involves creating a custom printf function in C. It includes tasks 
 | Header File | main.h (include guarded) |
 
 ## Tasks
-| Task | Description | File |
+| Task | Description |
 |------|-------------|------|
 | 0 | Write a function that produces output according to a format. Handle conversion specifiers c and s and %. |
 | 1 | Handle conversion specifiers d and i. |
