@@ -7,6 +7,7 @@
  * Return: The number of characters printed
  */
 
+
 int print_rot13(va_list args)
 {
 	char *str = va_arg(args, char *);
