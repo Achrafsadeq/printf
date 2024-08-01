@@ -6,6 +6,7 @@
  *
  * Return: The number of characters printed
  */
+
 int print_rev(va_list args)
 {
 	char *str = va_arg(args, char *);
