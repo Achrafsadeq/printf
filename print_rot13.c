@@ -1,39 +1,40 @@
 #include "main.h"
 
 /**
- * print_rot13 - Encodes and prints a string in ROT13 format
- * @args: The argument list containing the string to encode and print
+ * print_rot13 - Prints a string using rot13 encoding
+ * @args: The argument list containing the string to print
  *
  * Return: The number of characters printed
  */
 int print_rot13(va_list args)
 {
 	char *str = va_arg(args, char *);
-	char *rot13 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-	char *rot13_shift = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
-	int i, j, count = 0;
+	char *p;
+	int count = 0;
 
 	if (str == NULL)
 	{
 		str = "(null)";
 	}
 
-	for (i = 0; str[i] != '\0'; i++)
+	for (p = str; *p; p++)
 	{
-		for (j = 0; rot13[j] != '\0'; j++)
+		if ((*p >= 'a' && *p <= 'z') || (*p >= 'A' && *p <= 'Z'))
 		{
-			if (str[i] == rot13[j])
+			if ((*p >= 'a' && *p <= 'm') || (*p >= 'A' && *p <= 'M'))
 			{
-				_putchar(rot13_shift[j]);
-				count++;
-				break;
+				_putchar(*p + 13);
+			}
+			else
+			{
+				_putchar(*p - 13);
 			}
 		}
-		if (rot13[j] == '\0')
+		else
 		{
-			_putchar(str[i]);
-			count++;
+			_putchar(*p);
 		}
+		count++;
 	}
 
 	return (count);
