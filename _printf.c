@@ -71,7 +71,6 @@ int (*get_specifier_func(char s))(va_list)
 		{'u', print_unsigned},
 		{'o', print_octal},
 		{'x', print_hex},
-		{'X', print_HEX},
 		{'b', print_binary},
 		{'r', print_rev},
 		{'R', print_rot13},
