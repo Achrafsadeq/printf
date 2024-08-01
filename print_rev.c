@@ -9,12 +9,18 @@
 int print_rev(va_list args)
 {
 	char *str = va_arg(args, char *);
-	int length = _strlen(str);
+	int length = 0;
 	int count = 0;
 
 	if (str == NULL)
 	{
 		str = "(null)";
+	}
+
+	/* Calculate the length of the string */
+	while (str[length] != '\0')
+	{
+		length++;
 	}
 
 	/* Print the string in reverse */

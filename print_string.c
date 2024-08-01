@@ -9,19 +9,13 @@
 int print_string(va_list args)
 {
 	char *str = va_arg(args, char *);
-	int count = 0;
+	int i;
 
 	if (str == NULL)
-	{
 		str = "(null)";
-	}
 
-	while (*str)
-	{
-		_putchar(*str);
-		str++;
-		count++;
-	}
+	for (i = 0; str[i] != '\0'; i++)
+		_putchar(str[i]);
 
-	return (count);
+	return (i);
 }

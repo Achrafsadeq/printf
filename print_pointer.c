@@ -1,43 +1,40 @@
 #include "main.h"
 
 /**
- * print_pointer - Prints a pointer address in hexadecimal format
- * @args: The argument list containing the pointer to print
+ * print_pointer - Prints the value of a pointer in hexadecimal format.
+ * @args: The argument list containing the pointer to print.
  *
- * Return: The number of characters printed
+ * Return: The number of characters printed.
  */
 int print_pointer(va_list args)
 {
 	void *ptr = va_arg(args, void *);
-	unsigned long int addr = (unsigned long int)ptr;
-	char buffer[32];
-	int i = 0, count = 0;
+	unsigned long address;
+	int count = 0;
+	int i, leading_zero = 1;
 
-	if (!ptr)
+	if (ptr == NULL)
 	{
-		return (_printf("(nil)"));
+		return (_putchar('(') + _putchar('n') + _putchar('u')
+			+ _putchar('l') + _putchar('l') + _putchar(')'));
 	}
 
-	_putchar('0');
-	_putchar('x');
-	count += 2;
+	address = (unsigned long)ptr;
 
-	if (addr == 0)
-	{
-		_putchar('0');
-		count++;
-	}
+	/* Print "0x" */
+	count += _putchar('0');
+	count += _putchar('x');
 
-	while (addr > 0)
+	/* Convert the address to hexadecimal and print */
+	for (i = (sizeof(void *) * 2) - 1; i >= 0; i--)
 	{
-		buffer[i++] = "0123456789abcdef"[addr % 16];
-		addr /= 16;
-	}
+		int digit = (address >> (i * 4)) & 0xF;
 
-	while (i--)
-	{
-		_putchar(buffer[i]);
-		count++;
+		if (digit != 0 || !leading_zero || i == 0)
+		{
+			count += _putchar("0123456789abcdef"[digit]);
+			leading_zero = 0;
+		}
 	}
 
 	return (count);
