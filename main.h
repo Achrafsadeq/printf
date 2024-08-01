@@ -5,7 +5,6 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-#define BUFF_SIZE 1024
 /* Function Prototypes */
 int _printf(const char *format, ...);
 int _putchar(char c);
